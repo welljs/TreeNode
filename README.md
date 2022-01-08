@@ -2,13 +2,11 @@
 
 Класс из коллекции объектов формирует дерево данных. Эти данные react-вьюха рендерит в один проход. 
 
-![alt tag](https://github.com/welljs/TreeNode/blob/master/img.png)
-
 Ниже вырезка из кода, который рисует древовидную структуру
 
 ```javascript
 
-//KbkCodesGrid.tsx
+//CodesGrid.tsx
 
 public render() {
 
@@ -23,9 +21,9 @@ const tree = new DataTree(KbkDictionaries, items)
 	  {
 	    tree.map((node: ITreeNodeState<TExtendedKbk, any>, i: number) => {
 	      return (
-	        <KbkCodesGridItem
-	          checkboxEnabled={(options as IKbkCodesGridOptions).allowCheck}
-	          contextMenuEnabled={(options as IKbkCodesGridOptions).allowContextMenu}
+	        <CodesGridItem
+	          checkboxEnabled={(options as ICodesGridOptions).allowCheck}
+	          contextMenuEnabled={(options as ICodesGridOptions).allowContextMenu}
 	          onExpandClick={onExpandClick}
 	          data={node.data}
 	          children={node.children}
@@ -48,7 +46,7 @@ const tree = new DataTree(KbkDictionaries, items)
 
 
 
-//KbkCodesGridItem.tsx
+//CodesGridItem.tsx
 public render() {
 	const { data: {code, name}, children, depth, onEditClick, onDeleteClick, checked, onCheck, checkboxEnabled,
       contextMenuEnabled, onItemClick, expanded, onExpandClick } = this.props;
@@ -78,7 +76,7 @@ public render() {
         { !!children.length && expanded &&
           <div className={css.children}>
             {children.map((node: ITreeNodeState<TExtendedKbk, any>, i) => (
-              <KbkCodesGridItem
+              <CodesGridItem
                 className={cn(!expanded && css.tableRowCollapsed, !node.children.length && css.tableRowEmpty)}
                 data={node.data}
                 checkboxEnabled={checkboxEnabled}
